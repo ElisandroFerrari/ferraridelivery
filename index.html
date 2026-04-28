@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ferrari Delivery - Cardápio Completo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  </head>
+  <body onload="carregarDados()">
+    <a href="https://wa.me/5551996435568" class="wpp-flutuante" target="_blank">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        width="35"
+      />
+    </a>
+
+    <header>
+      <div class="topo-header">
+        <div class="chamada-texto">
+          <span class="linha-1">Bateu a</span><span class="linha-2">Fome?</span>
+        </div>
+        <img src="./assets/logo.jpg" alt="Ferrari Delivery" />
+      </div>
+      <div class="acoes-container">
+        <div class="busca-box">
+          <img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" />
+          <input
+            type="text"
+            id="campoBusca"
+            placeholder="Pesquisar no cardápio..."
+            onkeyup="filtrarCardapio()"
+          />
+        </div>
+        <button class="btn-compartilhar" onclick="compartilhar()">
+          <img src="https://cdn-icons-png.flaticon.com/512/1358/1358023.png" />
+        </button>
+      </div>
+    </header>
+
+    <section>
+      <h2>Sobre Nós</h2>
+      <div class="info-box">
+        <p>
+          A <strong>Ferrari Delivery</strong> é referência em sabor e qualidade
+          em Tramandaí. Nosso compromisso é levar até você uma comida caseira de
+          verdade, com ingredientes selecionados e aquele tempero especial que
+          só a nossa cozinha tem.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Horário de Expediente</h2>
+      <div class="info-box">
+        <table class="tabela-horario">
+          <tr>
+            <td class="dia-semana">Segunda a Sábado</td>
+            <td>11:00 às 14:00</td>
+          </tr>
+          <tr>
+            <td class="dia-semana">Domingo</td>
+            <td>Fechado</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="promo-header">Promoção Especial</h2>
+      <div class="cardapio">
+        <div
+          class="item"
+          style="border: 2px solid #ff0000; background: #fff5f5"
+        >
+          <div class="item-info">
+            <span style="color: red; font-size: 0.7rem; font-weight: bold"
+              >OFERTA LIMITADA</span
+            >
+            <h3 id="display-promo-nome">Carregando...</h3>
+            <div
+              class="preco"
+              id="display-promo-preco"
+              style="background: #ffebeb; border-color: #ffc1c1; color: #ff0000"
+            >
+              R$ 0,00
+            </div>
+            <button class="btn-detalhes" onclick="abrirModalDia('promo')">
+              Ver Detalhes
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pratos do Dia</h2>
+      <div class="cardapio">
+        <div class="item" style="border-top: 5px solid #ff0000">
+          <div class="item-info">
+            <span style="color: red; font-size: 0.7rem; font-weight: bold"
+              >ECONÔMICO</span
+            >
+            <h3 id="display-eco-nome">Carregando...</h3>
+            <div class="preco" id="display-eco-preco">R$ 0,00</div>
+            <button class="btn-detalhes" onclick="abrirModalDia('eco')">
+              Ver Detalhes
+            </button>
+          </div>
+        </div>
+        <div class="item" style="border-top: 5px solid #ff0000">
+          <div class="item-info">
+            <span style="color: red; font-size: 0.7rem; font-weight: bold"
+              >EXECUTIVO</span
+            >
+            <h3 id="display-exe-nome">Carregando...</h3>
+            <div class="preco" id="display-exe-preco">R$ 0,00</div>
+            <button class="btn-detalhes" onclick="abrirModalDia('exe')">
+              Ver Detalhes
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ala-minutas</h2>
+      <div class="cardapio">
+        <div class="item">
+          <div class="item-info">
+            <h3>Bife de Gado Simples</h3>
+            <div class="preco">R$ 26,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Bife Gado Simples', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/gado simples.jpg"
+            class="item-img"
+            alt="Bife de Gado Simples"
+          />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Filé de Frango Simples</h3>
+            <div class="preco">R$ 26,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Frango Simples', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img src="./assets/logo.jpg" class="item-img alt="Filé de Frango
+          Simples">
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Bife de Gado Acebolado</h3>
+            <div class="preco">R$ 28,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Gado Acebolado', 'Arroz, Feijão, Batata frita, Ovo, Cebola na chapa, Salada, sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/gado acebolado.jpg"
+            class="item-img"
+            alt="Bife de Gado Acebolado"
+          />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Filé de Frango Acebolado</h3>
+            <div class="preco">R$ 28,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Frango Acebolado', 'Arroz, Feijão, Batata frita, Ovo, Cebola, Salada, sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/frango acebolado.jpg"
+            class="item-img"
+            alt="Filé de Frango Acebolado"
+          />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Bife de Gado à Milanesa</h3>
+            <div class="preco">R$ 32,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Gado Milanesa', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/milanesa gado.jpg"
+            class="item-img"
+            alt="Bife de Gado à Milanesa"
+          />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Filé de Frango à Milanesa</h3>
+            <div class="preco">R$ 32,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Frango Milanesa', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/milanesa frango.jpg"
+            class="item-img"
+            alt="Filé de Frango à Milanesa"
+          />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Peixe à Dorê</h3>
+            <div class="preco">R$ 30,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Peixe Dorê', 'Arroz, Feijão, Batata frita, ovo, Salada, sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img src="./assets/logo.jpg" class="item-img" alt="Peixe à Dorê" />
+        </div>
+
+        <div class="item">
+          <div class="item-info">
+            <h3>Peixe à Milanesa</h3>
+            <div class="preco">R$ 32,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Peixe Milanesa', 'Arroz, Feijão, Batata frita, ovo, Salada, sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/logo.jpg"
+            class="item-img"
+            alt="Peixe à Milanesa"
+          />
+        </div>
+
+        <div class="item">
+          <div class="item-info">
+            <h3>Bife de Gado à Parmegiana</h3>
+            <div class="preco">R$ 35,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Gado Parmegiana', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/logo.jpg"
+            class="item-img"
+            alt="Bife de Gado à Parmegiana"
+          />
+        </div>
+
+        <div class="item">
+          <div class="item-info">
+            <h3>Frango à Parmegiana</h3>
+            <div class="preco">R$ 35,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Frango Parmegiana', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/logo.jpg"
+            class="item-img"
+            alt="Frango à Parmegiana"
+          />
+        </div>
+
+        <div class="item">
+          <div class="item-info">
+            <h3>Strogonoff de Gado</h3>
+            <div class="preco">R$ 40,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Strogonoff Gado', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/logo.jpg"
+            class="item-img"
+            alt="Strogonoff de Gado"
+          />
+        </div>
+
+        <div class="item">
+          <div class="item-info">
+            <h3>Strogonoff de Frango</h3>
+            <div class="preco">R$ 40,00</div>
+            <button
+              class="btn-detalhes"
+              onclick="abrirModal('Strogonoff Frango', 'Arroz, Feijão, Batata frita, Ovo, Salada, Sobremesa')"
+            >
+              Detalhes
+            </button>
+          </div>
+          <img
+            src="./assets/logo.jpg"
+            class="item-img"
+            alt="Strogonoff de Frango"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Porções Extras</h2>
+      <div class="cardapio" id="container-porcoes"></div>
+    </section>
+
+    <section>
+      <h2>Bebidas</h2>
+      <div class="cardapio">
+        <div class="item">
+          <div class="item-info">
+            <h3>Água s/gás 500ml</h3>
+            <div class="preco">R$ 4,00</div>
+          </div>
+          <img src="./assets/agua s gas.jpg" class="item-img" />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Água c/gás 500ml</h3>
+            <div class="preco">R$ 4,00</div>
+          </div>
+          <img src="./assets/agua c gas.jpg" class="item-img" />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Guaraná Charrua 350ml</h3>
+            <div class="preco">R$ 5,00</div>
+          </div>
+          <img src="./assets/guarana.jpg" class="item-img" />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Pepsi 350ml</h3>
+            <div class="preco">R$ 8,00</div>
+          </div>
+          <img src="./assets/pepsi.jpg" class="item-img" />
+        </div>
+        <div class="item">
+          <div class="item-info">
+            <h3>Coca-cola 350ml</h3>
+            <div class="preco">R$ 8,00</div>
+          </div>
+          <img src="./assets/coca.jpg" class="item-img" />
+        </div>
+      </div>
+    </section>
+
+    <div class="container-botoes-finais">
+      <a
+        href="https://pedido.anota.ai/loja/ferrari-delivery"
+        target="_blank"
+        class="btn-pedido"
+      >
+        <img src="assets/download.png" class="icon-btn" alt="AnotaAI" />
+        Clique aqui para fazer seu pedido
+      </a>
+      <a
+        href="https://www.instagram.com/deliveryferrari"
+        target="_blank"
+        class="btn-insta"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+          class="icon-btn"
+        />
+        Siga-nos no Instagram
+      </a>
+    </div>
+
+    <footer onclick="tentarAdmin()">
+      <p>© 2025 – Ferrari Delivery | Tramandaí - RS</p>
+      <small>(Clique 5 vezes aqui para entrar como admin)</small>
+    </footer>
+
+    <div id="painel-admin">
+      <h3>⚙️ Painel Administrativo</h3>
+      <strong>PROMOÇÃO:</strong>
+      <input
+        type="text"
+        id="in-promo-n"
+        class="input-admin"
+        placeholder="Nome"
+      />
+      <input
+        type="text"
+        id="in-promo-p"
+        class="input-admin"
+        placeholder="Preço"
+      />
+      <input
+        type="text"
+        id="in-promo-d"
+        class="input-admin"
+        placeholder="Detalhes"
+      />
+      <button class="btn-salvar" onclick="salvarAdmin()">SALVAR TUDO</button>
+    </div>
+
+    <div id="meuModal" class="modal">
+      <div class="modal-content">
+        <h2 id="modalTitulo"></h2>
+        <hr />
+        <p id="modalCorpo"></p>
+        <button onclick="fecharModal()" class="btn-fechar-modal">FECHAR</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
