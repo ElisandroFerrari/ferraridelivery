@@ -119,13 +119,14 @@ function fecharModal() {
     document.getElementById("meuModal").style.display = "none";
 }
 
-function filtrarCardapio() {
-    let busca = document.getElementById('campoBusca').value.toLowerCase();
-    document.querySelectorAll('.item').forEach(item => {
-        item.classList.toggle('escondido', !item.innerText.toLowerCase().includes(busca));
-    });
-}
-
 function compartilhar() {
-    if (navigator.share) { navigator.share({ title: 'Ferrari Delivery', url: window.location.href }); }
+    if (navigator.share) {
+        navigator.share({
+            title: 'Ferrari Delivery - Cardápio',
+            text: 'Confira nosso cardápio de hoje!',
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        alert("Link copiado: " + window.location.href);
+    }
 }
