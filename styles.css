@@ -1,13 +1,17 @@
 body {
+    background-image: url('./assets/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Opcional: mantém o fundo parado ao rolar */
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #A0522D;
     color: #000;
     padding-bottom: 20px;
 }
 
 header {
-    background: #FFD700;
+    background: rgba(255, 215, 0, 0.5);
     padding: 15px 25px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -273,7 +277,7 @@ h2 {
 footer {
     text-align: center;
     padding: 40px;
-    background: #A0522D;
+    background: rgba(160, 82, 45, 0.10);
     color: #FFD700;
     cursor: pointer;
     margin-top: 20px;
