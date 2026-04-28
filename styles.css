@@ -16,6 +16,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1000px; /* Mesma largura das seções de baixo */
+    margin: 0 auto;    /* Centraliza o conteúdo no meio da tela */
+    width: 100%;
 }
 
 .chamada-texto {
@@ -27,20 +30,20 @@ header {
 
 .chamada-texto .linha-1 {
     color: #ffffff;
-    font-size: 2.2rem;
+    font-size: 6rem;
     display: block;
 }
 
 .chamada-texto .linha-2 {
     color: #ff0000;
-    font-size: 3rem;
+    font-size: 8rem;
     display: block;
-    margin-left: 25px;
-    text-shadow: 1px 1px 0px #000;
+    margin-left: 150px;
+    text-shadow: 5px 1px 0px #000;
 }
 
 header img {
-    max-height: 80px;
+    max-height: 250px;
     border-radius: 8px;
     background: #fff;
     padding: 5px;
@@ -51,6 +54,10 @@ header img {
     gap: 10px;
     align-items: center;
     margin-top: 15px;
+    max-width: 1000px; /* Alinhamento total */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .busca-box {
