@@ -286,7 +286,8 @@ h2 {
 footer {
     text-align: center;
     padding: 40px;
-    background: #d6ecff;
+    background: #A0522D;
+    color: #FFD700;
     cursor: pointer;
     margin-top: 20px;
 }
@@ -331,4 +332,64 @@ footer {
 #modalTitulo {
     color: #A0522D;
     margin-top: 0;
+}
+
+/* --- MEDIA QUERY PARA CELULAR --- */
+@media (max-width: 768px) {
+    /* Ajusta o topo para o texto e a logo não baterem */
+    .topo-header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .chamada-texto .linha-1 {
+        font-size: 1.5rem;
+    }
+
+    .chamada-texto .linha-2 {
+        font-size: 2.2rem;
+        margin-left: 10px;
+    }
+
+    header img {
+        max-height: 60px;
+    }
+
+    /* Faz os itens do cardápio ocuparem a largura toda */
+    .cardapio {
+        grid-template-columns: 1fr; /* Um item por linha */
+        gap: 10px;
+    }
+
+    /* Ajusta o tamanho da imagem da comida no celular */
+    .item-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Deixa o campo de busca e o botão de compartilhar alinhados */
+    .acoes-container {
+        flex-wrap: wrap;
+    }
+
+    .busca-box {
+        order: 1; /* Busca em cima */
+        width: 100%;
+    }
+
+    .btn-compartilhar {
+        order: 2; /* Botão do lado ou abaixo */
+    }
+
+    /* Melhora o botão de pedido para o polegar */
+    .btn-pedido {
+        font-size: 0.95rem;
+        padding: 15px;
+    }
+
+    /* Ajusta o modal para não sumir no topo da tela */
+    .modal-content {
+        margin: 30% auto;
+        width: 90%;
+    }
 }
