@@ -66,12 +66,14 @@ function salvarAdmin() {
             d: document.getElementById('in-exe-d').value
         }
     };
-    db.ref('cardapio').set(novosDados).then(() => alert("✅ Cardápio Atualizado!"));
+
+    db.ref('cardapio').set(novosDados)
+        .then(() => alert("✅ Cardápio Atualizado com sucesso!"))
+        .catch((error) => alert("❌ Erro ao salvar: " + error.message));
 }
 
-
 function carregarDados() {
-const pContainer = document.getElementById('container-porcoes');
+    const pContainer = document.getElementById('container-porcoes');
     if(pContainer) {
         pContainer.innerHTML = porcoes.map(item => `
             <div class="item">
@@ -82,6 +84,7 @@ const pContainer = document.getElementById('container-porcoes');
             </div>
         `).join('');
     }
+
     db.ref('cardapio').on('value', (snapshot) => {
         const dados = snapshot.val();
         if (dados) {
@@ -92,16 +95,24 @@ const pContainer = document.getElementById('container-porcoes');
             document.getElementById('display-exe-nome').innerText = dados.exe.n;
             document.getElementById('display-exe-preco').innerText = "R$ " + dados.exe.p;
 
-            
             document.getElementById('in-promo-n').value = dados.promo.n;
             document.getElementById('in-promo-p').value = dados.promo.p;
             document.getElementById('in-promo-d').value = dados.promo.d;
+            
+            // Econômico (ISSO FALTAVA NO SEU CÓDIGO)
+            document.getElementById('in-eco-n').value = dados.eco.n;
+            document.getElementById('in-eco-p').value = dados.eco.p;
+            document.getElementById('in-eco-d').value = dados.eco.d;
+
+            // Executivo (ISSO FALTAVA NO SEU CÓDIGO)
+            document.getElementById('in-exe-n').value = dados.exe.n;
+            document.getElementById('in-exe-p').value = dados.exe.p;
+            document.getElementById('in-exe-d').value = dados.exe.d;
 
             window.dadosFirebase = dados;
         }
     });
 }
-
 
 function abrirModalDia(tipo) {
     if (!window.dadosFirebase) return;

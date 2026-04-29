@@ -399,29 +399,34 @@
         <p> 2025 – Ferrari Delivery © | Tramandaí - RS <br> By < EFcode / >©™ <br> </p>
         </footer>
 
-    <div id="painel-admin">
-      <h3>⚙️ Painel Administrativo</h3>
-      <strong>PROMOÇÃO:</strong>
-      <input
-        type="text"
-        id="in-promo-n"
-        class="input-admin"
-        placeholder="Nome"
-      />
-      <input
-        type="text"
-        id="in-promo-p"
-        class="input-admin"
-        placeholder="Preço"
-      />
-      <input
-        type="text"
-        id="in-promo-d"
-        class="input-admin"
-        placeholder="Detalhes"
-      />
-      <button class="btn-salvar" onclick="salvarAdmin()">SALVAR TUDO</button>
-    </div>
+        <div id="painel-admin" style="display:none; background: #1a1a1a; color: white; padding: 20px; border-radius: 15px; border: 2px solid red;">
+          <h3 style="text-align: center;">⚙️ Painel Administrativo</h3>
+          
+          <div style="margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+              <label><strong>PROMOÇÃO:</strong></label>
+              <input type="text" id="in-promo-n" placeholder="Nome do prato">
+              <input type="text" id="in-promo-p" placeholder="Preço (ex: 19,00)">
+              <input type="text" id="in-promo-d" placeholder="Descrição/Ingredientes">
+          </div>
+      
+          <div style="margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+              <label><strong>ECONÔMICO:</strong></label>
+              <input type="text" id="in-eco-n" placeholder="Nome do prato">
+              <input type="text" id="in-eco-p" placeholder="Preço (ex: 22,00)">
+              <input type="text" id="in-eco-d" placeholder="Descrição/Ingredientes">
+          </div>
+      
+          <div style="margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+              <label><strong>EXECUTIVO:</strong></label>
+              <input type="text" id="in-exe-n" placeholder="Nome do prato">
+              <input type="text" id="in-exe-p" placeholder="Preço (ex: 30,00)">
+              <input type="text" id="in-exe-d" placeholder="Descrição/Ingredientes">
+          </div>
+      
+          <button onclick="salvarAdmin()" style="width: 100%; background: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+              SALVAR TUDO
+          </button>
+      </div>
 
     <div id="meuModal" class="modal">
       <div class="modal-content">

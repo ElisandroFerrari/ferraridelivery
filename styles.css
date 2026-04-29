@@ -253,6 +253,9 @@ h2 {
 }
 
 #painel-admin {
+    max-height: 85vh;
+    overflow-y: auto;
+    z-index: 1000;
     display: none;
     background: #1a1a1a;
     color: white;
@@ -407,4 +410,10 @@ footer {
         margin: 30% auto;
         width: 90%;
     }
+}
+
+painel-admin input {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
 }
