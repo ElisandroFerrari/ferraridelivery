@@ -16,7 +16,7 @@ const porcoes = [
     { n: "Bife de gado simples", p: "10,00" }
 ];
 
-// 1. CONFIGURAÇÃO FIREBASE
+
 const firebaseConfig = {
     apiKey: "AIzaSyBfcG9ufmu8GiKySmU4iI_LKDColpL_9e4",
     authDomain: "ferraridelivery.firebaseapp.com",
@@ -32,7 +32,7 @@ const db = firebase.database();
 
 let contador = 0;
 
-// 2. FUNÇÃO ADMIN
+
 function tentarAdmin() {
     contador++;
     if (contador >= 5) {
@@ -47,7 +47,7 @@ function tentarAdmin() {
     }
 }
 
-// 3. SALVAR NO FIREBASE
+
 function salvarAdmin() {
     const novosDados = {
         promo: {
@@ -69,7 +69,7 @@ function salvarAdmin() {
     db.ref('cardapio').set(novosDados).then(() => alert("✅ Cardápio Atualizado!"));
 }
 
-// 4. CARREGAR DADOS
+
 function carregarDados() {
 const pContainer = document.getElementById('container-porcoes');
     if(pContainer) {
@@ -92,7 +92,7 @@ const pContainer = document.getElementById('container-porcoes');
             document.getElementById('display-exe-nome').innerText = dados.exe.n;
             document.getElementById('display-exe-preco').innerText = "R$ " + dados.exe.p;
 
-            // Preenche campos admin
+            
             document.getElementById('in-promo-n').value = dados.promo.n;
             document.getElementById('in-promo-p').value = dados.promo.p;
             document.getElementById('in-promo-d').value = dados.promo.d;
@@ -102,7 +102,7 @@ const pContainer = document.getElementById('container-porcoes');
     });
 }
 
-// 5. MODAL E BUSCA
+
 function abrirModalDia(tipo) {
     if (!window.dadosFirebase) return;
     const item = window.dadosFirebase[tipo];
