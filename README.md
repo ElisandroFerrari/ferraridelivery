@@ -1,18 +1,20 @@
 #  Ferrari Delivery - Cardápio Digital
-<img width="1600" height="900" alt="logo" src="https://github.com/user-attachments/assets/98f2b56e-f9d4-43b5-94e5-c6b2a68a3c34" />
-
+<img src="https://github.com/user-attachments/assets/98f2b56e-f9d4-43b5-94e5-c6b2a68a3c34"
+ alt="Logo Ferrari Delivery" width="100%" style="max-width: 800px;">
 
 Bem-vindo ao **Ferrari Delivery**, um projeto de cardápio digital moderno, responsivo e focado na experiência do usuário. Este projeto foi desenvolvido para facilitar a visualização de produtos e a realização de pedidos de forma rápida e intuitiva.
 
----
-https://ferraridelivery-cardapio-digital.netlify.app/
----
-
 Demonstração do Projeto
 
-Confira abaixo a navegação completa do cardápio, incluindo o sistema de scroll e zoom de imagens:
+Confira abaixo a navegação completa do cardápio:
 
-[COLE O VÍDEO AQUI]
+
+[Acesse o Cardápio Online 🌐](https://ferraridelivery-cardapio-digital.netlify.app/)
+
+
+
+<img width="1366" height="4005" alt="screencapture-ferraridelivery-cardapio-digital-netlify-app-2026-04-29-08_41_38" src="https://github.com/user-attachments/assets/459a0bee-060d-40ac-be82-52f5ce9199f8" />
+
 
 ## Tecnologias Utilizadas
 
@@ -27,6 +29,9 @@ Este projeto foi construído utilizando as tecnologias fundamentais do desenvolv
 > **Status do Projeto:**  Em desenvolvimento / Finalizado
 
 ---
+<p align="center">
+  < EFcode / > ©™
+</p>
 
 ##  Como Rodar o Projeto
 
