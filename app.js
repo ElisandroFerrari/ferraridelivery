@@ -145,14 +145,14 @@ function withButtonLock(button, action) {
 }
 
 function safeImagePath(value) {
-  if (typeof value !== "string" || !value.trim()) return "assets/logo.png";
+  if (typeof value !== "string" || !value.trim()) return "assets/logo-principal.png";
   const path = value.trim();
   if (path.startsWith("assets/") && !path.includes("..") && !/["'();\\\u0000-\u001f]/.test(path)) return path;
   try {
     const url = new URL(path, window.location.origin);
-    return url.protocol === "https:" ? url.href : "assets/logo.png";
+    return url.protocol === "https:" ? url.href : "assets/logo-principal.png";
   } catch {
-    return "assets/logo.png";
+    return "assets/logo-principal.png";
   }
 }
 
@@ -163,7 +163,7 @@ function imageElement(src, alt, className = "") {
   image.loading = "lazy";
   image.decoding = "async";
   if (className) image.className = className;
-  image.addEventListener("error", () => { image.src = "assets/logo.png"; }, { once: true });
+  image.addEventListener("error", () => { image.src = "assets/logo-principal.png"; }, { once: true });
   return image;
 }
 
@@ -727,7 +727,7 @@ function populateAddressForm() {
   selectedAvatarFile = null;
   clearAvatarPreviewUrl();
   document.querySelector("[data-avatar-preview]").src =
-    document.querySelector("[data-profile-avatar]")?.src || "assets/logo.png";
+    document.querySelector("[data-profile-avatar]")?.src || "assets/logo-principal.png";
   avatarPositionX = 50;
   avatarPositionY = 50;
   avatarZoom = 1;
@@ -750,7 +750,7 @@ async function fetchProfile() {
   if (accountName) accountName.textContent = data?.full_name || activeUser.email;
   const avatar = document.querySelector("[data-profile-avatar]");
   if (avatar) {
-    avatar.src = "assets/logo.png";
+    avatar.src = "assets/logo-principal.png";
     if (data?.avatar_path) {
       const { data: signedImage, error: signedImageError } = await supabase.storage
         .from(AVATAR_BUCKET).createSignedUrl(data.avatar_path, 3600);
@@ -1066,7 +1066,7 @@ function bindCustomerEvents() {
     selectedAvatarFile = null;
     clearAvatarPreviewUrl();
     document.querySelector("[data-avatar-preview]").src =
-      document.querySelector("[data-profile-avatar]")?.src || "assets/logo.png";
+      document.querySelector("[data-profile-avatar]")?.src || "assets/logo-principal.png";
   });
 }
 

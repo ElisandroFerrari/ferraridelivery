@@ -3,7 +3,7 @@ import { SUPABASE_ANON_KEY, SUPABASE_URL } from "./supabase-config.js";
 
 const MASTER_ADMIN_ID = "0680c531-6f8e-4ad8-aae9-4de4206765ab";
 const IMAGE_BUCKET = "menu-images";
-const FALLBACK_IMAGE = "assets/logo.png";
+const FALLBACK_IMAGE = "assets/logo-principal.png";
 const supabase = SUPABASE_URL && SUPABASE_ANON_KEY
   ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: true, autoRefreshToken: true } })
   : null;

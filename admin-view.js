@@ -66,13 +66,13 @@ function money(value) {
 }
 
 function safeImageUrl(value) {
-  if (typeof value !== "string" || !value.trim()) return "assets/logo.png";
+  if (typeof value !== "string" || !value.trim()) return "assets/logo-principal.png";
   if (value.startsWith("assets/") && !value.includes("..")) return value;
   try {
     const url = new URL(value, window.location.href);
-    return url.protocol === "https:" ? url.href : "assets/logo.png";
+    return url.protocol === "https:" ? url.href : "assets/logo-principal.png";
   } catch {
-    return "assets/logo.png";
+    return "assets/logo-principal.png";
   }
 }
 
@@ -161,7 +161,7 @@ function makeMediaCard(product) {
   image.alt = product.name;
   image.loading = "lazy";
   image.addEventListener("error", () => {
-    if (image.getAttribute("src") !== "assets/logo.png") image.src = "assets/logo.png";
+    if (image.getAttribute("src") !== "assets/logo-principal.png") image.src = "assets/logo-principal.png";
   });
   const name = document.createElement("strong");
   name.textContent = product.name;
