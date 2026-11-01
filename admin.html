@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#121212">
+    <title>Painel administrativo | Ferrari Delivery</title>
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body data-page="admin">
+    <header class="admin-topbar">
+      <a class="brand" href="index.html" aria-label="Ferrari Delivery, início">
+        <img src="assets/logo.png" alt="" width="42" height="42">
+        <span>FERRARI <strong>DELIVERY</strong></span>
+      </a>
+      <div class="admin-topbar-actions">
+        <button class="quick-action" type="button" data-whatsapp><span aria-hidden="true">◉</span><span>WhatsApp / Robô</span><i data-whatsapp-status>Edge Function</i></button>
+        <button class="quick-action" type="button" data-notifications aria-pressed="false"><span aria-hidden="true">♧</span><span>Notificações</span><i data-notifications-status>Desativadas</i></button>
+        <button class="quick-action" type="button" data-print-switch aria-pressed="true"><span aria-hidden="true">▤</span><span data-print-label>Impressão ativa</span></button>
+        <button class="admin-settings-trigger" type="button" aria-label="Configurações da loja" title="Configurações da loja" data-open-settings><img src="assets/config-icon.png" alt="" width="22" height="22"></button>
+      </div>
+    </header>
+    <div class="admin-shell">
+      <aside class="admin-sidebar" aria-label="Navegação administrativa">
+        <button class="admin-sidebar-toggle" type="button" aria-label="Expandir menu lateral" aria-expanded="false" aria-pressed="false" title="Expandir menu lateral" data-sidebar-toggle>
+          <span aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="admin-nav-label">Menu</span>
+        </button>
+        <label class="admin-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="Procurando por algo?" aria-label="Buscar no menu" data-menu-search></label>
+        <nav class="admin-navigation">
+          <p class="admin-nav-caption">OPERAÇÃO</p>
+          <button type="button" class="admin-nav-link" data-admin-view="orders" aria-label="Pedidos Salão"><span aria-hidden="true">▣</span><span class="admin-nav-label">Pedidos Salão</span><span class="nav-badge" data-orders-count>0</span></button>
+          <button type="button" class="admin-nav-link" data-admin-view="scheduled" aria-label="Pedidos Agendados"><span aria-hidden="true">◷</span><span class="admin-nav-label">Pedidos Agendados</span><span class="nav-badge" data-scheduled-count>0</span></button>
+          <button type="button" class="admin-nav-link" data-admin-view="history" aria-label="Histórico de Pedidos"><span aria-hidden="true">▤</span><span class="admin-nav-label">Histórico de Pedidos</span></button>
+          <p class="admin-nav-caption">CARDÁPIO</p>
+          <details class="admin-menu-group" open>
+            <summary aria-label="Gestor de Cardápio"><span aria-hidden="true">▦</span><span class="admin-nav-label">Gestor de Cardápio</span></summary>
+            <div class="admin-submenu">
+              <button type="button" class="admin-subnav-link is-active" data-admin-view="catalog" aria-label="Gestor"><span aria-hidden="true">▦</span><span class="admin-nav-label">Gestor</span></button>
+              <button type="button" class="admin-subnav-link" data-admin-view="media" aria-label="Imagens do cardápio"><span aria-hidden="true">▧</span><span class="admin-nav-label">Imagens do cardápio</span></button>
+              <button type="button" class="admin-subnav-link" data-admin-view="bulk" aria-label="Edição em massa"><span aria-hidden="true">☷</span><span class="admin-nav-label">Edição em massa</span></button>
+              <button type="button" class="admin-subnav-link" data-admin-view="promotions" aria-label="Promoções"><span aria-hidden="true">☆</span><span class="admin-nav-label">Promoções</span></button>
+            </div>
+          </details>
+        </nav>
+        <div class="admin-sidebar-footer"><img src="assets/logo.png" alt="" width="30" height="30"><span>Ferrari Delivery<small>Painel administrativo</small></span></div>
+      </aside>
+      <main class="admin-workspace">
+        <div class="notice admin-shell-notice" data-admin-feedback role="status" hidden></div>
+        <iframe id="admin-view" name="admin-view" title="Área de gestão administrativa" src="gestor-cardapio.html"></iframe>
+      </main>
+    </div>
+    <div class="toast-region" data-toast aria-live="polite" aria-atomic="true"></div>
+    <section class="print-sheet" data-print-sheet aria-label="Comanda para impressão"></section>
+    <dialog class="admin-settings-dialog" data-settings-dialog aria-labelledby="settings-title">
+      <form class="admin-settings-card" data-settings-form>
+        <button class="dialog-close" type="button" aria-label="Fechar configurações" data-close-settings>×</button>
+        <p class="eyebrow">PAINEL ADMINISTRATIVO</p>
+        <h2 id="settings-title">Configurações da loja</h2>
+        <p class="muted">Defina os períodos de atendimento e o status que será mostrado aos clientes.</p>
+        <section class="settings-group">
+          <h3>Expediente geral</h3>
+          <div class="settings-time-row"><label>Abertura<input type="time" name="opening_time" required></label><label>Fechamento<input type="time" name="closing_time" required></label></div>
+        </section>
+        <section class="settings-group">
+          <div class="settings-group-heading"><div><h3>Funcionamento no almoço</h3><p class="muted">Escolha se a loja aceita pedidos neste intervalo.</p></div><select name="lunch_open" aria-label="Funcionamento no almoço"><option value="true">Aberta</option><option value="false">Fechada</option></select></div>
+          <div class="settings-time-row"><label>Início do intervalo<input type="time" name="lunch_start" required></label><label>Fim do intervalo<input type="time" name="lunch_end" required></label></div>
+        </section>
+        <section class="settings-group">
+          <label class="settings-checkbox"><input type="checkbox" name="evening_enabled"><span><strong>Atender no período da noite</strong><small>Adicionar um horário de funcionamento noturno.</small></span></label>
+          <div class="settings-time-row"><label>Início da noite<input type="time" name="evening_start" required></label><label>Fim da noite<input type="time" name="evening_end" required></label></div>
+        </section>
+        <section class="settings-group">
+          <label class="settings-checkbox"><input type="checkbox" name="manual_open"><span><strong>Loja habilitada para receber pedidos</strong><small>Desative para fechar a loja manualmente, independentemente do horário.</small></span></label>
+          <p class="store-status-preview" data-settings-status></p>
+        </section>
+        <section class="settings-group">
+          <h3>Aparência do painel</h3>
+          <label class="settings-theme-label">Tema<select name="theme"><option value="dark">Tema escuro</option><option value="light">Tema claro</option></select></label>
+        </section>
+        <section class="settings-group admin-settings-account">
+          <h3>Sessão</h3>
+          <button class="button button-outline" type="button" data-sign-out>Sair do painel</button>
+        </section>
+        <p class="notice settings-feedback" data-settings-feedback role="status" hidden></p>
+        <div class="form-actions"><button class="button button-primary" type="submit">Salvar configurações</button><button class="button button-outline" type="button" data-cancel-settings>Cancelar</button></div>
+      </form>
+    </dialog>
+  </body>
+</html>

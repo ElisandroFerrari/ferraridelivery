@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#121212">
+    <title>Gestor de cardápio | Ferrari Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="gestor-cardapio.js"></script>
+  </head>
+  <body class="admin-view-body" data-admin-view-page="catalog">
+    <main class="admin-view-main">
+      <header class="view-heading">
+        <div><p class="eyebrow">GESTÃO DA LOJA</p><h1>Gestor de cardápio</h1><p class="muted">Organize produtos por categoria e mantenha seu catálogo atualizado.</p></div>
+        <button class="button button-primary" type="button" data-new-category>+ Nova categoria</button>
+      </header>
+      <p class="notice view-feedback" data-view-feedback role="status" hidden></p>
+      <section class="catalog-toolbar" aria-label="Filtros do cardápio">
+        <label class="catalog-search">⌕ <input type="search" placeholder="Buscar produto pelo nome..." aria-label="Buscar produto pelo nome" data-product-search></label>
+        <label class="catalog-filter"><span>Categoria</span><select aria-label="Filtrar por categoria" data-category-filter><option value="">Todas as categorias</option></select></label>
+        <details class="action-dropdown"><summary class="button button-outline">Ações ▾</summary><div><button type="button" data-refresh>Atualizar cardápio</button><button type="button" data-toggle-inactive>Mostrar inativos</button><button type="button" data-open-promotions>Gerenciar promoções</button></div></details>
+      </section>
+      <section class="category-stack" aria-label="Categorias e produtos" data-category-list aria-live="polite"></section>
+    </main>
+    <dialog class="admin-dialog" data-product-dialog aria-labelledby="product-dialog-title">
+      <form class="admin-dialog-card" data-product-form>
+        <button class="dialog-close" type="button" aria-label="Fechar" data-close-product>×</button>
+        <p class="eyebrow">CARDÁPIO</p><h2 id="product-dialog-title">Adicionar produto</h2>
+        <input type="hidden" name="id">
+        <label>Nome do produto<input name="name" required minlength="1" maxlength="120"></label>
+        <label>Categoria<select name="category" required data-product-category></select></label>
+        <label>Descrição<textarea name="description" rows="3" maxlength="500"></textarea></label>
+        <div class="price-fields">
+          <label>Preço normal (R$)<input name="price" type="number" min="0.01" step="0.01" required></label>
+          <label>Preço promocional (R$)<input name="promotional_price" type="number" min="0.01" step="0.01" placeholder="Opcional"></label>
+        </div>
+        <fieldset class="image-source">
+          <legend>Imagem do produto</legend>
+          <div class="image-source-tabs"><button type="button" class="is-active" data-image-mode="file" aria-pressed="true">Enviar arquivo</button><button type="button" data-image-mode="url" aria-pressed="false">Colar link URL</button></div>
+          <div class="image-file-field" data-file-image-field>
+            <span>Foto do dispositivo</span>
+            <input name="image_file" type="file" accept="image/*" data-image-file hidden>
+            <button class="button button-outline" type="button" data-choose-image>Escolher foto do dispositivo</button>
+            <small class="muted" data-image-file-name>Nenhum arquivo selecionado</small>
+          </div>
+          <label data-url-image-field hidden>URL da imagem<input name="image_url" type="url" maxlength="2048" placeholder="https://..."></label>
+          <div class="image-preview"><img src="assets/logo.png" alt="Prévia da imagem do produto" data-image-preview><span data-image-preview-label>Prévia da imagem</span></div>
+        </fieldset>
+        <label>Complementos <span class="muted">(um por linha)</span><textarea name="complements" rows="3" placeholder="Ex.: Ovo extra&#10;Queijo adicional"></textarea></label>
+        <label class="checkbox-label"><input name="active" type="checkbox" checked> Produto ativo</label>
+        <p class="notice form-feedback" data-product-feedback role="status" hidden></p>
+        <div class="form-actions"><button class="button button-primary" type="submit">Salvar produto</button><button class="button button-outline" type="button" data-cancel-product>Cancelar</button></div>
+      </form>
+    </dialog>
+    <dialog class="admin-dialog" data-category-dialog aria-labelledby="category-dialog-title">
+      <form class="admin-dialog-card" data-category-form>
+        <button class="dialog-close" type="button" aria-label="Fechar" data-close-category>×</button>
+        <p class="eyebrow">ORGANIZAÇÃO</p><h2 id="category-dialog-title">Nova categoria</h2>
+        <input type="hidden" name="key">
+        <label>Nome da categoria<input name="name" required maxlength="60" placeholder="Ex.: Sobremesas"></label>
+        <label>Identificação visual<input name="tag" maxlength="40" placeholder="Ex.: Itens principais"></label>
+        <p class="notice form-feedback" data-category-feedback role="status" hidden></p>
+        <div class="form-actions"><button class="button button-primary" type="submit">Salvar categoria</button><button class="button button-outline" type="button" data-cancel-category>Cancelar</button></div>
+      </form>
+    </dialog>
+    <dialog class="admin-dialog" data-delete-product-dialog aria-labelledby="delete-product-title">
+      <form class="admin-dialog-card" data-delete-product-form>
+        <button class="dialog-close" type="button" aria-label="Fechar" data-cancel-delete-product>×</button>
+        <p class="eyebrow">EXCLUIR PRODUTO</p>
+        <h2 id="delete-product-title">Confirmar exclusão</h2>
+        <p>Deseja excluir <strong data-delete-product-name></strong>? Esta ação não pode ser desfeita.</p>
+        <p class="notice form-feedback" data-delete-product-feedback role="status" hidden></p>
+        <div class="form-actions"><button class="button button-primary" type="submit">Excluir produto</button><button class="button button-outline" type="button" data-cancel-delete-product>Cancelar</button></div>
+      </form>
+    </dialog>
+  </body>
+</html>

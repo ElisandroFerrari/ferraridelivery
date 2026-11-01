@@ -1,0 +1,2 @@
+[functions.whatsapp-notifications]
+verify_jwt = false

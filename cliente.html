@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#161312">
+    <title>Cardápio e pedidos | Ferrari Delivery</title>
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body data-page="customer">
+    <header class="site-header">
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="48" height="48"><span>FERRARI <strong>DELIVERY</strong></span></a>
+      <div class="header-actions"><img class="profile-avatar" src="assets/logo.png" alt="Foto do perfil" data-profile-avatar><span class="account-name" data-account-name></span><button class="settings-trigger" type="button" data-edit-profile aria-label="Abrir configurações" title="Configurações"><img src="assets/config-icon.png" alt="" width="22" height="22"></button></div>
+    </header>
+    <main class="customer-main">
+      <section class="welcome-row"><div><p class="eyebrow">CARDÁPIO DA CASA</p><h1>O que vai ser hoje<span class="accent">?</span></h1></div><div class="header-actions"><a class="text-link" href="#customer-cart">Meu carrinho ↓</a><a class="text-link" href="#order-history">Meus pedidos ↓</a></div></section>
+      <section class="customer-store-status" data-customer-store-status aria-live="polite" hidden>
+        <span class="store-status-indicator" data-store-status-indicator></span>
+        <div><strong data-store-status-title>Verificando horário da loja...</strong><p data-store-status-hours></p></div>
+      </section>
+      <section class="promotion-area" aria-label="Promoções em destaque">
+        <div class="promotion-backdrop" data-promotion-backdrop></div>
+        <div class="promotion-content" data-promotion-content>
+          <div class="promotion-copy"><p class="eyebrow">FEITO PARA APROVEITAR</p><h2 data-promotion-title>Carregando ofertas...</h2><p data-promotion-description>Preparando os destaques da casa.</p><div class="promotion-bottom"><strong data-promotion-price></strong><button class="button button-light" type="button" data-promotion-add disabled>Adicionar pedido</button></div></div>
+          <div class="promotion-dish"><img data-promotion-image src="assets/Bife De Gado Acebolado.png" alt="Destaque da casa" loading="eager"></div>
+        </div>
+        <div class="promotion-controls"><button type="button" aria-label="Promoção anterior" data-promotion-prev>‹</button><span data-promotion-dots></span><button type="button" aria-label="Próxima promoção" data-promotion-next>›</button></div>
+      </section>
+      <section class="catalog-section" aria-labelledby="catalog-heading">
+        <div class="section-heading"><div><p class="eyebrow">PREPARADO NA HORA</p><h2 id="catalog-heading">Escolha seus favoritos</h2></div><span class="muted">Adicione ao carrinho para pedir</span></div>
+        <nav class="category-tabs" role="tablist" aria-label="Categorias do cardápio" data-customer-categories></nav>
+        <div class="product-grid" data-products aria-live="polite"></div>
+        <div class="pagination" data-product-pagination></div>
+      </section>
+      <section class="customer-cart" id="customer-cart" aria-labelledby="customer-cart-title">
+        <div class="section-heading"><div><p class="eyebrow">SEU PEDIDO</p><h2 id="customer-cart-title">Carrinho</h2></div><strong class="customer-cart-total" data-inline-cart-total>R$ 0,00</strong></div>
+        <div class="customer-cart-list" data-inline-cart aria-live="polite"></div>
+      </section>
+      <section class="history-section" id="order-history">
+        <div class="section-heading"><div><p class="eyebrow">ACOMPANHE TUDO</p><h2>Seus pedidos</h2></div></div>
+        <div class="order-list" data-customer-orders></div>
+        <div class="pagination" data-order-pagination></div>
+      </section>
+    </main>
+    <aside class="cart-bar" data-cart aria-label="Carrinho de compras">
+      <div><span class="cart-count" data-cart-count>0</span><span>itens no pedido</span></div><strong data-cart-total>R$ 0,00</strong>
+      <button class="button button-primary" type="button" data-checkout disabled>Finalizar pedido</button>
+    </aside>
+    <dialog class="modal-dialog" data-address-dialog aria-labelledby="address-title">
+      <form class="dialog-card" data-address-form>
+        <button class="dialog-close" type="button" aria-label="Fechar" data-close-address>×</button>
+        <p class="eyebrow">CONFIGURAÇÕES DA CONTA</p><h2 id="address-title">Complete seu endereço</h2>
+        <p class="muted">Precisamos dessas informações para preparar e entregar seu pedido.</p>
+        <div class="avatar-editor">
+          <div class="avatar-crop" data-avatar-crop aria-label="Prévia da foto. Arraste para ajustar a posição." tabindex="0">
+            <img src="assets/logo.png" alt="Prévia da foto do perfil" data-avatar-preview draggable="false">
+            <span>Arraste para posicionar</span>
+          </div>
+          <div class="avatar-controls">
+            <label for="avatar-file">Foto do perfil</label>
+            <input id="avatar-file" name="avatarFile" type="file" accept="image/jpeg,image/png,image/webp">
+            <small class="muted">JPG, PNG ou WebP · até 5 MB</small>
+            <label for="avatar-zoom">Zoom</label><input id="avatar-zoom" type="range" min="1" max="3" step="0.05" value="1" data-avatar-zoom>
+            <label for="avatar-x">Posição horizontal</label><input id="avatar-x" type="range" min="0" max="100" step="1" value="50" data-avatar-x>
+            <label for="avatar-y">Posição vertical</label><input id="avatar-y" type="range" min="0" max="100" step="1" value="50" data-avatar-y>
+          </div>
+        </div>
+        <label for="profile-name">Nome completo</label><input id="profile-name" name="fullName" autocomplete="name" required minlength="3" maxlength="120">
+        <label for="profile-phone">Telefone / WhatsApp</label><input id="profile-phone" name="phone" type="tel" autocomplete="tel" required maxlength="24" inputmode="tel">
+        <label for="profile-street">Rua</label><input id="profile-street" name="street" autocomplete="address-line1" required maxlength="160">
+        <label for="profile-number">Número</label><input id="profile-number" name="number" autocomplete="address-line2" required maxlength="20">
+        <label for="profile-complement">Complemento <span class="muted">(opcional)</span></label><input id="profile-complement" name="complement" maxlength="100">
+        <div class="address-location-fields">
+          <div><label for="profile-neighborhood">Bairro</label><input id="profile-neighborhood" name="neighborhood" autocomplete="address-level3" required maxlength="100"></div>
+          <div><label for="profile-city">Cidade</label><input id="profile-city" name="city" autocomplete="address-level2" required maxlength="100"></div>
+        </div>
+        <label class="checkbox-label"><input name="whatsapp_opt_in" type="checkbox"> Quero receber atualizações do pedido pelo WhatsApp</label>
+        <p class="notice" data-address-feedback role="status" hidden></p>
+        <button class="button button-primary button-full" type="submit" data-address-submit>Salvar e enviar pedido</button>
+        <section class="settings-section" aria-labelledby="theme-heading">
+          <div><p class="eyebrow">APARÊNCIA</p><h3 id="theme-heading">Tema do painel</h3><p class="muted">Escolha a aparência mais confortável para você.</p></div>
+          <button class="button button-outline theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span data-theme-icon aria-hidden="true">☀</span><span data-theme-label>Usar tema claro</span></button>
+        </section>
+        <div class="settings-signout">
+          <p>Deseja encerrar o acesso à sua conta neste dispositivo?</p>
+          <button class="button button-outline signout-button" type="button" data-sign-out>Sair da conta</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="modal-dialog" data-cart-dialog aria-labelledby="cart-dialog-title">
+      <section class="dialog-card">
+        <button class="dialog-close" type="button" aria-label="Fechar" data-close-cart>×</button>
+        <p class="eyebrow">SEU PEDIDO</p><h2 id="cart-dialog-title">Revise seu carrinho</h2>
+        <div data-cart-items></div><div class="cart-dialog-total"><span>Total</span><strong data-dialog-total>R$ 0,00</strong></div>
+        <button class="button button-primary button-full" type="button" data-open-address>Continuar para entrega</button>
+      </section>
+    </dialog>
+    <div class="toast-region" data-toast aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
